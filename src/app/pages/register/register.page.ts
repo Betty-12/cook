@@ -52,7 +52,7 @@ export class RegisterPage implements OnInit {
         this.session = response;
         console.log("YA REGISTRE");
         this.registerAlert();
-      }).unsubscribe();
+      }).unsubscribe;
     }
   }
 

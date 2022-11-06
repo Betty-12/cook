@@ -11,8 +11,6 @@ export interface Registro {
   createdAt?: string;
   password?: string;
   email?: string;
-  phone?: string;
-  token?: string;
   telefono?: number;
 }
 
