@@ -12,17 +12,17 @@
         <ion-item>
           <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input required formControlName="email" type="text"></ion-input>
+          <ion-input required formControlName="email" id="email" type="text" [(ngModel)]="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Password <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input required formControlName="password" type="text"></ion-input>
+          <ion-input required formControlName="password" id="password" type="password" [(ngModel)]="password"></ion-input>
         </ion-item>
       </ion-card-content>
       <ion-card-content>
 
-        <ion-button expand="block" shape="round" type="submit" [disabled]="loginForm.invalid">
+        <ion-button expand="block" shape="round" type="submit" (click)="presentToast('bottom')" [disabled]="loginForm.invalid">
           Iniciar Sesión
         </ion-button>
       </ion-card-content>
