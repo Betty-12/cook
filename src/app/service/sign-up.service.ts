@@ -26,7 +26,7 @@ export class SignUpService {
   private url = ENV.API + 'users';
   private header = {
     "X-Parse-Application-Id": ENV.APP_ID,
-    "X-parse-REST-API-Key": ENV.API_SECRET,
+    "X-Parse-REST-API-Key": ENV.API_SECRET,
     "X-Parse-Revocable-Session": "1",
     "Content-Type": "application/json"
   }

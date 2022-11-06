@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController, LoadingController, NavController, ToastController} from '@ionic/angular';
+import { AlertController, LoadingController, MenuController, NavController, ToastController} from '@ionic/angular';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 
 @Component({
@@ -10,62 +10,35 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 })
 export class LoginPage implements OnInit {
 
-  Contenido: any;
-  mail = [];
-  pass = [];
-  data = [];
   email:string;
   password:string;
 
   private EMAILPATTERN = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
   constructor(
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController,
     private toastController: ToastController,
     private auth: AuthServiceService,
-    private NavigatorCtrl: NavController
+    private NavigatorCtrl: NavController,
+    private menuCtrl: MenuController
   ) {
-    this.auth.authService().subscribe((response)=>{
-
-      this.Contenido = response['results']; 
-      
-      for (let index = 0; index < this.Contenido.length; index++) {
-        this.mail.push(
-          this.Contenido[index].email,
-        );
-
-        this.pass.push(
-          this.Contenido[index].password
-        );
-        // this.data.push({
-        //   email: this.Contenido[index].email,
-        //   password: this.Contenido[index].password
-        // });
-      }     
-      // console.log(this.data);
-      
-      console.log(this.mail);
-      console.log(this.pass);
-      
-
-    }).unsubscribe;
+    
    }
 
   loginForm = new FormGroup({
-    email: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required, Validators.pattern(this.EMAILPATTERN)]),
     password: new FormControl('',[Validators.required, Validators.minLength(8)]),
   });
 
   ngOnInit() {
+    this.menuCtrl.swipeGesture(false);
     this.loginForm.controls;
   }
 
   onSubmit(){  
     const user = {
-      username: this.email,
+      email: this.email,
       password: this.password
     }
-
     if(this.loginForm.value.email === undefined || this.loginForm.value.email === null){
       this.validateAlert('Error Datos', 'Ingrese un correo');
     } else if (this.loginForm.value.password === undefined || this.loginForm.value.password === null){

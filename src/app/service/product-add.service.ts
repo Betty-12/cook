@@ -9,6 +9,10 @@ export interface Producto {
   cantidad?: string;
   precio?: string;
   status?: string;
+  otro?: string;
+  image1?: any;
+  image2?: any;
+  image3?: any;
   updateAt?: string;
   createdAt?: string;
   ACL?: string;
@@ -45,6 +49,6 @@ export class ProductAddService {
   }
 
   productAdd(productAdd: Producto){
-    return this.http.post(this.urlpost, productAdd, {headers: this.header});
+    return this.http.post(this.url, productAdd, {headers: this.header});
   }
 }

@@ -1,9 +1,54 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>vender</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-content"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Vender</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <form [formGroup]="addProducto" (ngSubmit)="onSubmit()">
+      <ion-card-header>
+        <ion-card-title>Añadir un producto</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input required formControlName="nombre" type="text" placeholder="Name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Descripción</ion-label>
+            <ion-input required formControlName="descripcion" type="text" placeholder="Descripcion del producto"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Cantidad Disponibles</ion-label>
+            <ion-input required formControlName="cantidad" type="tel" placeholder="Cantidad"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Precio Venta</ion-label>
+            <ion-input required formControlName="precio" type="tel" placeholder="Precio Venta Al Público"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Otro</ion-label>
+            <ion-input formControlName="otro" type="text" placeholder="Otra caracteristica"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Imagen</ion-label>
+            <ion-input required formControlName="image" type="file"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Awesome Label</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+      <ion-card-content>
+        <ion-button expand="block" type="submit" [disabled]="addProducto.invalid">
+          Agregar
+        </ion-button>
+      </ion-card-content>
+    </form>
+  </ion-card>
 </ion-content>

@@ -24,9 +24,10 @@ export class AddCarPage implements OnInit {
           console.log("responseST", response);
           this.Compra.push({
             nombre: response.nombre,
-            cantidad: response.cantidad,
+            disponibles: response.cantidad,
             precio: response.precio,
             descripcion: response.descripcion,
+            image: response.image1.url,
           });
         }).catch(()=>{
           console.log("No hay producto disponible");
@@ -41,4 +42,10 @@ export class AddCarPage implements OnInit {
   ngOnInit() {
   }
 
+  onClickMenos(){
+
+  }
+  onClickMas(){
+
+  }
 }
