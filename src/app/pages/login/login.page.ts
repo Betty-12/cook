@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   Contenido: any;
   mail = [];
   pass = [];
-
+  data = [];
   email:string;
   password:string;
 
@@ -37,14 +37,22 @@ export class LoginPage implements OnInit {
         this.pass.push(
           this.Contenido[index].password
         );
+        // this.data.push({
+        //   email: this.Contenido[index].email,
+        //   password: this.Contenido[index].password
+        // });
       }     
       // console.log(this.data);
+      
+      console.log(this.mail);
+      console.log(this.pass);
+      
 
     }).unsubscribe;
    }
 
   loginForm = new FormGroup({
-    email: new FormControl('',[Validators.required, Validators.pattern(this.EMAILPATTERN)]),
+    email: new FormControl('',[Validators.required]),
     password: new FormControl('',[Validators.required, Validators.minLength(8)]),
   });
 
@@ -52,15 +60,23 @@ export class LoginPage implements OnInit {
     this.loginForm.controls;
   }
 
-  onSubmit(){    
+  onSubmit(){  
+    const user = {
+      username: this.email,
+      password: this.password
+    }
+
     if(this.loginForm.value.email === undefined || this.loginForm.value.email === null){
       this.validateAlert('Error Datos', 'Ingrese un correo');
     } else if (this.loginForm.value.password === undefined || this.loginForm.value.password === null){
       this.validateAlert('Error Datos', 'Inglese una contraseña');
-    } else if(this.mail.includes(this.email) && this.pass.includes(this.password)) {
-      this.NavigatorCtrl.navigateRoot('/home');
     } else {
-      this.validateAlert('Datos Incorrectos', 'La contraseña o el correo no son correctos :(');
+      this.auth.authServiceGet(user).subscribe((response)=>{
+        this.NavigatorCtrl.navigateRoot('/home');
+      },
+      err => {
+        this.validateAlert('Datos Incorrectos', 'La contraseña o el correo no son correctos :(');
+      });
     }
   }
 

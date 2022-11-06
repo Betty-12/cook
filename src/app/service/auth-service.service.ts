@@ -19,9 +19,12 @@ export interface AuthLogin {
 export class AuthServiceService {
 
   private url = ENV.API + 'classes/users';
+  private urlo = ENV.API + 'login';
   private headerGet = {
     "X-Parse-Application-Id": ENV.APP_ID,
     "X-Parse-REST-API-Key": ENV.API_SECRET,
+    "X-Parse-Revocable-Session": "1",
+    "Content-Type": "application/json"
   }
 
   constructor(
@@ -32,5 +35,10 @@ export class AuthServiceService {
   authService(){
     return this.http.get<[AuthLogin]>(this.url, {headers: this.headerGet});
   }
+
+  authServiceGet(usuario){
+    return this.http.get<[AuthLogin]>(this.urlo, {params: usuario, headers: this.headerGet});
+  }
+
 }
 
