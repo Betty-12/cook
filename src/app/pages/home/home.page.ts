@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { ProductAddService } from 'src/app/service/product-add.service';
 
@@ -14,11 +14,13 @@ export class HomePage {
 
   Contenido: any;
   constructor(
+    private menuCtrl: MenuController,
     private productos: ProductAddService,
     private storage: Storage,
     private navCtrl: NavController,
     private router: Router,
   ) {
+    this.menuCtrl.close();
     this.productos.getProducts().subscribe((response) => {
       console.log("DATA", response);
 

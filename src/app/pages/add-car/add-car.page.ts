@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -14,6 +15,7 @@ export class AddCarPage implements OnInit {
   Compra = [];
   cantidad: number = 1;
   constructor(
+    private menuCtrl: MenuController,
     private route: ActivatedRoute,
     private storage: Storage
   ) { 
@@ -40,6 +42,7 @@ export class AddCarPage implements OnInit {
   }
 
   ngOnInit() {
+    this.menuCtrl.close();
   }
 
   onClickMenos(){

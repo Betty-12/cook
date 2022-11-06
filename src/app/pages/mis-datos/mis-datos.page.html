@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-content"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mis Datos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="addMisDatos" (ngSubmit)="onSubmit()">
+      <ion-card-header>
+        <ion-card-title>Añadir un producto</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Calle: </ion-label>
+            <ion-input required formControlName="calle" type="text" placeholder="Name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Número:</ion-label>
+            <ion-input required formControlName="numero" type="tel" placeholder="Descripcion del producto"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Municipio: </ion-label>
+            <ion-input required formControlName="municipio" type="text" placeholder="Cantidad"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Estado: </ion-label>
+            <ion-input required formControlName="estado" type="text" placeholder="Precio Venta Al Público"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">País: </ion-label>
+            <ion-input formControlName="pais" type="text" placeholder="Otra caracteristica"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Tarjeta de Débito: </ion-label>
+            <ion-input formControlName="idcard" type="tel" placeholder="Otra caracteristica"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Banco: </ion-label>
+            <ion-input formControlName="banco" type="text" placeholder="Otra caracteristica"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+      <ion-card-content>
+        <ion-button expand="block" type="submit" [disabled]="addMisDatos.invalid">
+          Agregar
+        </ion-button>
+      </ion-card-content>
+    </form>
+  </ion-card>
+</ion-content>

@@ -32,6 +32,10 @@ const routes: Routes = [
     path: 'add-car-paypal',
     loadChildren: () => import('./pages/add-car-paypal/add-car-paypal.module').then( m => m.AddCarPaypalPageModule)
   },
+  {
+    path: 'mis-datos',
+    loadChildren: () => import('./pages/mis-datos/mis-datos.module').then( m => m.MisDatosPageModule)
+  },
 ];
 
 @NgModule({

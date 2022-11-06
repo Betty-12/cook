@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { ProductAddService } from 'src/app/service/product-add.service';
 
@@ -14,7 +15,8 @@ export class VenderPage implements OnInit {
   response: any;
   constructor(
     private productoPost: ProductAddService,
-    private storage: Storage
+    private storage: Storage,
+    private menuCtrl: MenuController
   ) { }
 
   addProducto = new FormGroup({
@@ -26,6 +28,7 @@ export class VenderPage implements OnInit {
     image: new FormControl('',[Validators.required,]),
   });
   ngOnInit() {
+    this.menuCtrl.close();
     this.addProducto.controls;
   }
 

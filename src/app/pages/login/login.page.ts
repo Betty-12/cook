@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController, MenuController, NavController, ToastController} from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private auth: AuthServiceService,
     private NavigatorCtrl: NavController,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private storage: Storage
   ) {
     
    }
@@ -45,6 +47,8 @@ export class LoginPage implements OnInit {
       this.validateAlert('Error Datos', 'Inglese una contraseña');
     } else {
       this.auth.authServiceGet(user).subscribe((response)=>{
+        const userId = response;
+        this.storage.set('userId', userId);
         this.NavigatorCtrl.navigateRoot('/home');
       },
       err => {
