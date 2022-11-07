@@ -32,6 +32,7 @@ export class AddCarPage implements OnInit {
             precio: response.precio,
             descripcion: response.descripcion,
             image: response.image1.url,
+            objectId: response.objectId
           });
         }).catch(()=>{
           console.log("No hay producto disponible");
@@ -63,7 +64,8 @@ export class AddCarPage implements OnInit {
       componentProps: {
         descripcion: compras.descripcion,
         cantidad: this.cantidad,
-        precio: compras.precio
+        precio: compras.precio,
+        objId: compra.objectId
       }
     });
    (await modal).present(); 

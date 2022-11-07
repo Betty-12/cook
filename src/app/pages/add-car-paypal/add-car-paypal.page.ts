@@ -8,11 +8,22 @@ import { TouchSequence } from 'selenium-webdriver';
   styleUrls: ['./add-car-paypal.page.scss'],
 })
 export class AddCarPaypalPage implements OnInit {
-  propina: number = 0;
   envio: number = 12;
   compra: number;
-  // propinaTotal: number;
   @Input("precio") precio;
+  @Input("cantidad") cantidad;
+  @Input("objId") objId;
+  total: number;
+  
+
+  banco: any;
+  numTarjeta: any;
+  numeroTarjeta: any;
+  direccion: any
+  numDireccion: any;
+  producto: any;
+  objIdUser: any;
+
   constructor(
     private storage: Storage
   ) { 
@@ -20,11 +31,35 @@ export class AddCarPaypalPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.total = (this.propina) + (this.envio) + (this.precio);
     this.compra = parseInt(this.precio);
+    this.total = this.compra + this.envio;
+    
     this.storage.get("direccion").then((resp) => {
-      console.log(resp);
+
+      this.banco = resp.banco;
+      this.numTarjeta = resp.idcard.substr(-4);
+      this.numeroTarjeta = resp.idcard;
+      this.direccion = resp.calle;
+      this.numDireccion = resp.numero;
+      this.objIdUser = resp.idUser;
+
     });
+  }
+
+  onClickPedido(){
+
+    const datosPedido = {
+      total: this.total,
+      cantidad: this.cantidad,
+      numTarjeta: this.numeroTarjeta,
+      objIdUser: this.objIdUser,
+      objId: this.objId
+    }
+
+    console.log(datosPedido);
+
+    this.storage.set("datosPedido",datosPedido);
+
   }
 
 }
