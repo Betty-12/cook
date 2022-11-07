@@ -56,6 +56,7 @@ export class MisDatosPage implements OnInit {
     this.misDatosPost.misDatosAdd(misDatos).subscribe(async (response) => {
       console.log("RESP:", response);
       this.responseData = response;
+      this.storage.set("direccion",misDatos);
       if (this.responseData.objectId == undefined) {
         console.log("error");
 
