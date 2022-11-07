@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController, NavController } from '@ionic/angular';
+import { LoadingController, MenuController, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { ProductAddService } from 'src/app/service/product-add.service';
 
@@ -19,13 +19,16 @@ export class HomePage {
     private storage: Storage,
     private navCtrl: NavController,
     private router: Router,
+    private loadingCtrl: LoadingController
   ) {
-    this.menuCtrl.close();
+    // const load = this.loadingCtrl.create({message:'Cargando'});
+    // (await load).present();
     this.productos.getProducts().subscribe((response) => {
       console.log("DATA", response);
-
+      
       this.Contenido = response['results'];
     }).unsubscribe;
+    this.menuCtrl.close();
 
   }
 

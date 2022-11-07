@@ -27,9 +27,11 @@
         </ion-button>
       </ion-card-content>
     </form>
-    <ion-card-content>
+    <ion-card-content class="ion-text-center" style="display:flex; align-content: center;justify-content: flex-end;">
       <ion-item>
-        <ion-label><a href="/register">Quiero Registrarme...</a></ion-label>
+        <ion-button (click)="registro()" expand="block" fill="clear" shape="round">
+          Registrarme
+        </ion-button>
       </ion-item>
     </ion-card-content>
   </ion-card>

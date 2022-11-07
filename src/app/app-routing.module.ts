@@ -36,6 +36,10 @@ const routes: Routes = [
     path: 'mis-datos',
     loadChildren: () => import('./pages/mis-datos/mis-datos.module').then( m => m.MisDatosPageModule)
   },
+  {
+    path: 'mis-compras',
+    loadChildren: () => import('./pages/mis-compras/mis-compras.module').then( m => m.MisComprasPageModule)
+  },
 ];
 
 @NgModule({

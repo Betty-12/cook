@@ -36,6 +36,10 @@ export class LoginPage implements OnInit {
     this.loginForm.controls;
   }
 
+  registro(){
+    this.NavigatorCtrl.navigateRoot('/register');
+  }
+
   onSubmit(){  
     const user = {
       email: this.email,

@@ -8,40 +8,59 @@
 </ion-header>
 
 <ion-content>
+  <ion-card *ngIf="misDatos">
+    <ion-card-content>
+      Mis Datos Guardados
+      <ion-list *ngFor="let datos of misDatosG">
+        <ion-item>
+          <ion-label>Calle: {{datos.calle}}, Num.{{datos.numero}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Municipio: {{datos.municipio}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Estado: {{datos.estado}}, {{datos.pais}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Banco: {{datos.banco}} - {{datos.idcard}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
   <ion-card>
     <form [formGroup]="addMisDatos" (ngSubmit)="onSubmit()">
       <ion-card-header>
-        <ion-card-title>Añadir un producto</ion-card-title>
+        <ion-card-title>Agregar mis Datos</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-list>
           <ion-item>
             <ion-label position="stacked">Calle: </ion-label>
-            <ion-input required formControlName="calle" type="text" placeholder="Name"></ion-input>
+            <ion-input required formControlName="calle" type="text" placeholder="Calle"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">Número:</ion-label>
-            <ion-input required formControlName="numero" type="tel" placeholder="Descripcion del producto"></ion-input>
+            <ion-input required formControlName="numero" type="tel" placeholder="Número"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">Municipio: </ion-label>
-            <ion-input required formControlName="municipio" type="text" placeholder="Cantidad"></ion-input>
+            <ion-input required formControlName="municipio" type="text" placeholder="Municipio"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">Estado: </ion-label>
-            <ion-input required formControlName="estado" type="text" placeholder="Precio Venta Al Público"></ion-input>
+            <ion-input required formControlName="estado" type="text" placeholder="Estado"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">País: </ion-label>
-            <ion-input formControlName="pais" type="text" placeholder="Otra caracteristica"></ion-input>
+            <ion-input formControlName="pais" type="text" placeholder="País"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">Tarjeta de Débito: </ion-label>
-            <ion-input formControlName="idcard" type="tel" placeholder="Otra caracteristica"></ion-input>
+            <ion-input formControlName="idcard" type="tel" placeholder="*************0000"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">Banco: </ion-label>
-            <ion-input formControlName="banco" type="text" placeholder="Otra caracteristica"></ion-input>
+            <ion-input formControlName="banco" type="text" placeholder="Banco"></ion-input>
           </ion-item>
         </ion-list>
       </ion-card-content>

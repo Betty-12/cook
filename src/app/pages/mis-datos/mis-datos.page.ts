@@ -13,6 +13,8 @@ export class MisDatosPage implements OnInit {
 
   responseData: any;
   userId: any;
+  misDatos: any;
+  misDatosG = [];
   constructor(
     private menuCtrl: MenuController,
     private misDatosPost: MisDatosService,
@@ -23,6 +25,25 @@ export class MisDatosPage implements OnInit {
     this.storage.get('userId').then((resp) => {
       this.userId = resp.objectId;
       console.log("ID:", this.userId);
+    }).catch((error)=>{
+      console.log("Error");
+      
+    })
+    this.storage.get('direccion').then((response)=>{
+      this.misDatos = response;
+      console.log("DATA_D:", this.misDatos);
+      this.misDatosG.push({
+        calle: this.misDatos.calle,
+        estado: this.misDatos.estado,
+        numero: this.misDatos.numero,
+        municipio: this.misDatos.municipio,
+        pais: this.misDatos.pais,
+        idcard: this.misDatos.idcard,
+        banco: this.misDatos.banco
+      });
+    }).catch((error)=>{
+      console.log("Error");
+      
     })
 
   }
