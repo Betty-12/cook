@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-content"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Finalizar pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content>
+    <ion-card>
+      <ion-card-content>
+
+        <ion-card-title style="text-align: center;">Tu pedido</ion-card-title>
+
+        <ion-list>
+          <ion-item-group>
+
+            <ion-label>
+              Detalle producto:
+            </ion-label>
+
+            <ion-item style="display: none;">
+              <ion-label>Id: {{objId}}</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Producto: {{descripcion}}</ion-label>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-label>Cantidad de producto: {{cantidad}}  </ion-label>
+            </ion-item>
+      
+          </ion-item-group>
+        </ion-list>
+
+        <ion-list>
+          <ion-item-group>
+            
+            <ion-label>
+              Dirección de entrega:
+            </ion-label>
+    
+            <ion-item lines="none">
+              <ion-select placeholder="Selecciona la dirección de envio" okText="Seleccionar" cancelText="Cancelar">
+                <ion-select-option value="datosDireccion">{{this.direccion}} {{this.numDireccion}}</ion-select-option>
+                <!-- <ion-select-option value="efectivo">Efectivo</ion-select-option> -->
+              </ion-select>
+            </ion-item>
+          </ion-item-group>
+        </ion-list>
+        
+        <ion-list>
+          <ion-item-group>
+    
+            <ion-label>
+              Tiempo de entrega:
+            </ion-label>
+   
+            <ion-item lines="none">
+              <ion-label>35 - 50 min</ion-label>
+            </ion-item>
+          </ion-item-group>
+        </ion-list>
+
+        <ion-list>
+          <ion-item-group>
+
+            <ion-label>
+              Método de pago:
+            </ion-label>
+
+            <ion-select [(ngModel)]="num" placeholder="Selecciona el método de pago" okText="Seleccionar" cancelText="Cancelar">
+              <ion-select-option value="tarjeta">Tarjeta</ion-select-option>
+              <!-- <ion-select-option value="efectivo">Efectivo</ion-select-option> -->
+            </ion-select>
+
+            <ion-item lines="none" *ngIf="num == 'tarjeta'">
+              <ion-select placeholder="Selecciona la tarjeta" okText="Seleccionar" cancelText="Cancelar">
+                <ion-select-option value="{{this.numeroTarjeta}}">{{this.banco}} <br> {{this.numTarjeta}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <!-- <ion-item lines="none" id="selTarjeta" style="display: none;">
+              <ion-select placeholder="Selecciona la tarjeta" okText="Seleccionar" cancelText="Cancelar">
+                <ion-select-option value="">Visa 5523</ion-select-option>
+              </ion-select>
+            </ion-item> -->
+          </ion-item-group>
+        </ion-list>
+
+        <ion-list>
+          <ion-item-group>
+
+            <ion-label>
+              Resumen de pedido:
+            </ion-label>
+        
+            <ion-item>
+              <ion-label>Costos de productos: ${{precio}}</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Costos de envío: ${{envio}}</ion-label>
+            </ion-item>
+
+          </ion-item-group>
+        </ion-list>
+
+        <ion-item>
+          <ion-label>Total a pagar: ${{this.total}}</ion-label>
+          <ion-button  (click)="onClickPedido()" size="small" color="success">
+            Hacer pedido
+          </ion-button>
+        </ion-item>
+
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</ion-content>

@@ -1,5 +1,5 @@
-<ion-content>
-  <ion-card style="margin-top: 40%;">
+<ion-content class="backgroud-content">
+  <ion-card style="margin-top: 50%;">
     <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
       <ion-card-header class="ion-text-center">
         <ion-card-title>Registrarme</ion-card-title>
@@ -13,17 +13,17 @@
         <ion-item>
           <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input required formControlName="email" type="text"></ion-input>
+          <ion-input required formControlName="email" type="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Password <ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input required formControlName="password" type="text"></ion-input>
+          <ion-input required formControlName="password" type="password"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Password Confirm<ion-text color="danger">*</ion-text>
           </ion-label>
-          <ion-input required formControlName="passwordtwo" type="text"></ion-input>
+          <ion-input required formControlName="passwordtwo" type="password"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Phone<ion-text color="danger">*</ion-text>
@@ -33,7 +33,7 @@
       </ion-card-content>
 
       <ion-card-content>
-        <ion-button expand="block" color="primary" type="submit" [disabled]="registroForm.invalid">
+        <ion-button expand="block" shape="round" type="submit" [disabled]="registroForm.invalid">
           Registrarme
         </ion-button>
       </ion-card-content>

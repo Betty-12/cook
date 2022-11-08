@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Cookhome</string>
+    <string name="title_activity_main">Cookhome</string>
+    <string name="package_name">com.moblie.cookhome</string>
+    <string name="custom_url_scheme">com.moblie.cookhome</string>
+</resources>

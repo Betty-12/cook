@@ -1,9 +1,38 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add-car</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu-content"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Agregar al Carrito</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-content *ngFor="let compra of Compra">
+      <img [src]="compra.image" alt="image_product" width="" height="100" style="width: -webkit-fill-available;height: auto;">
+      <ion-item>
+        <ion-label>{{compra.nombre}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-card-subtitle>{{compra.descripcion}}</ion-card-subtitle>
+      </ion-item>
+      <ion-item class="ion-text-center">
+        <ion-label>Disponibles: {{compra.disponibles}}</ion-label>
+      </ion-item>
+      <ion-item class="ion-text-center">
+        <ion-button (click)="onClickMenos()" fill="clear" shape="round">
+          <strong style="font-size:xx-large">-</strong>
+        </ion-button>
+        <ion-label style="font-size:xx-large">{{cantidad}}</ion-label>
+        <ion-button (click)="onClickMas()" fill="clear" shape="round">
+          <strong style="font-size:xx-large">+</strong>
+        </ion-button>
+      </ion-item>
+      <ion-button (click)="a(compra)" expand="block" >
+        Pagar <strong> ${{compra.precio}}</strong>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

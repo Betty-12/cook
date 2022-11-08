@@ -1,0 +1,22 @@
+ion-content.background{
+    --background: url('/assets/img/wallpaper8.jpg') 0 0/100% 100% no-repeat;
+}
+
+.logo{
+    width: 70%;
+}
+
+ion-button {
+    --background: #EF6D32;
+}
+
+ion-label a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}
+
+.card-content {
+    border-radius: 30px;
+}
