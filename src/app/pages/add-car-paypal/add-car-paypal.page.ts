@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { LoadingController, ModalController, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { TouchSequence } from 'selenium-webdriver';
 
@@ -12,6 +13,7 @@ export class AddCarPaypalPage implements OnInit {
   compra: number;
   @Input("precio") precio;
   @Input("cantidad") cantidad;
+  @Input("descripcion") descripcion;
   @Input("objId") objId;
   total: number;
   
@@ -25,7 +27,10 @@ export class AddCarPaypalPage implements OnInit {
   objIdUser: any;
 
   constructor(
-    private storage: Storage
+    private storage: Storage,
+    private loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private modalCtrl: ModalController,
   ) { 
     
   }
@@ -33,9 +38,7 @@ export class AddCarPaypalPage implements OnInit {
   ngOnInit() {
     this.compra = parseInt(this.precio);
     this.total = this.compra + this.envio;
-    
     this.storage.get("direccion").then((resp) => {
-
       this.banco = resp.banco;
       this.numTarjeta = resp.idcard.substr(-4);
       this.numeroTarjeta = resp.idcard;
@@ -46,20 +49,27 @@ export class AddCarPaypalPage implements OnInit {
     });
   }
 
-  onClickPedido(){
-
+  async onClickPedido(){
+    const loading = await this.loadingCtrl.create({
+      message: 'Realizando Compra...',
+      spinner: 'bubbles',
+    });
+    await loading.present();
+    
     const datosPedido = {
       total: this.total,
       cantidad: this.cantidad,
       numTarjeta: this.numeroTarjeta,
       objIdUser: this.objIdUser,
-      objId: this.objId
+      objId: this.objId,
+      nombre: this.descripcion,
     }
-
-    console.log(datosPedido);
-
-    this.storage.set("datosPedido",datosPedido);
-
+    setTimeout(() => {
+      this.storage.set("datosPedido",datosPedido);
+      loading.dismiss();
+    }, 2500);
+    this.navCtrl.navigateRoot('/home');
+    this.modalCtrl.dismiss();
   }
 
 }

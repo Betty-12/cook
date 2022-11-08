@@ -11,9 +11,21 @@
   <ion-card *ngIf="misCompras">
     <ion-card-content>
       <ion-list *ngFor="let compra of misCompras">
-        <ion-item>
-          <ion-label>{{compra.nombre}}</ion-label>
-        </ion-item>
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="9">
+              <ion-item>
+                {{compra.nombre}} <br> ({{compra.cantidad}})
+              </ion-item>
+            </ion-col>
+            <ion-col size="3" style="display:flex; align-content: center;justify-content: flex-end;" >
+              <ion-item>
+                $ {{compra.total}}
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
       </ion-list>
     </ion-card-content>
   </ion-card>

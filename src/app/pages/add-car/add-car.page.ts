@@ -25,7 +25,6 @@ export class AddCarPage implements OnInit {
       if(params){
         this.producto = params.objectId;
         this.storage.get('producto '+this.producto).then( (response) => {
-          console.log("responseST", response);
           this.Compra.push({
             nombre: response.nombre,
             disponibles: response.cantidad,
@@ -38,8 +37,6 @@ export class AddCarPage implements OnInit {
           console.log("No hay producto disponible");
           
         })
-        console.log("TT", this.Compra);
-        
       }
     })
   }
@@ -57,8 +54,6 @@ export class AddCarPage implements OnInit {
 
   async a(compra){
     const compras = compra;
-    console.log(compras);
-    
     const modal = await this.modalCtrl.create({
       component: AddCarPaypalPage,
       componentProps: {
